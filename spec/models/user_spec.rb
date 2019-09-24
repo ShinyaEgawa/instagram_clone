@@ -1,64 +1,59 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before do
-    @user = FactoryBot.build(:user)
-  end
+  let(:user) { FactoryBot.create(:user) }
 
-  context "when user is valid" do
-    it "値が入っている場合" do
-      expect(@user).to be_valid
-    end
-    it "emailが空白の場合" do
-      @user.email = " "
-      expect(@user).to be_invalid
+  describe User do
+    it "有効なファクトリを持つこと" do
+      expect(user).to be_valid
     end
   end
 
-  context "when email format is invalid" do
-    it "emailのvalidateが正しく機能しているか" do
+  # Shoulda Matchers を使用
+  it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_length_of(:name).is_at_most(50) }
+  it { is_expected.to validate_presence_of :email }
+  #it { is_expected.to validate_uniqueness_of(:email).case_insensitive } ・・・(*)
+  it { is_expected.to validate_length_of(:email).is_at_most(255) }
+  it { is_expected.to validate_presence_of :password }
+  it { is_expected.to validate_length_of(:password).is_at_least(6) }
+
+  it "重複したメールアドレスなら無効な状態であること" do
+    FactoryBot.create(:user, email: "aaron@example.com")
+    user = FactoryBot.build(:user, email: "Aaron@example.com")
+    user.valid?
+    expect(user.errors[:email]).to include("has already been taken")
+  end
+
+  describe "メールアドレスの有効性" do
+    it "無効なメールアドレスの場合" do
       invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
-                          foo@bar_baz.com foo@bar+baz.com]
+                            foo@bar_baz.com foo@bar+baz.com]
       invalid_addresses.each do |invalid_address|
-        expect(FactoryBot.build(:user, email: invalid_address)).to be_invalid
+        user.email = invalid_address
+        expect(user).to_not be_valid
+      end
+    end
+
+    it "有効なメールアドレスの場合" do
+      valid_addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+      valid_addresses.each do |valid_address|
+        user.email = valid_address
+        expect(user).to be_valid
       end
     end
   end
 
-  context "when email addresses should be unique" do
-    it "一意性が正しく機能しているか" do
-      duplicate_user = @user.dup
-      duplicate_user.email = @user.email.upcase
-      @user.save!
-      expect(duplicate_user).to be_invalid
-    end
-  end
-  it "emailを小文字に変換後の値と大文字を混ぜて登録されたアドレスが同じか" do
-    @user.email = "Foo@ExAMPle.CoM"
-    @user.save!
-    expect(@user.reload.email).to eq "foo@example.com"
-  end
-  it "passwordが空白になっていないか" do
-    @user.password = @user.password_confirmation = "a" * 6
-    expect(@user).to be_valid
-    @user.password = @user.password_confirmation = " " * 6
-    expect(@user).to_not be_valid
-  end
-
-  describe "password length" do
-
-    context "パスワードが６桁の時" do
-      it "正しい" do
-        @user = FactoryBot.build(:user, password: "a" * 6,password_confirmation: "a" * 6)
-        expect(@user).to be_valid
-      end
+  describe "パスワード確認が一致すること" do
+    it "一致する場合" do
+      user = FactoryBot.build(:user, password: "password", password_confirmation: "password")
+      expect(user).to be_valid
     end
 
-    context "パスワードが５桁の時" do
-      it "正しくない" do
-        @user = FactoryBot.build(:user, password: "a" *5, password_confirmation: "a" * 5)
-        expect(@user).to be_invalid
-      end
+    it "一致しない場合" do
+      user = FactoryBot.build(:user, password: "password", password_confirmation: "different")
+      user.valid?
+      expect(user.errors[:password_confirmation]).to include("doesn't match Password")
     end
   end
 end
