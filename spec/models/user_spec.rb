@@ -56,4 +56,17 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password_confirmation]).to include("doesn't match Password")
     end
   end
+
+=begin
+
+  # 2つのバグのテスト,その2
+  # こちらの記述ではエラーが発生するため、users_login_apiにて別方法で記述
+  describe "ダイジェストが存在しない場合のauthenticated?のテスト" do
+    it "remember_digestがない場合無効になるか" do
+      expect(user.authenticated?(:remember, '')).to eq false
+    end
+  end
+
+=end
+
 end
