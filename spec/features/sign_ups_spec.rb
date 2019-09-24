@@ -15,6 +15,16 @@ RSpec.feature "SignUps", type: :feature do
         fill_in "パスワード(確認)",  with: "test123"
         click_button "Sign up"
       }.to change(User, :count).by(1)
+
+      expect(current_path).to eq root_path
     end
+
+    mail = ActionMailer::Base.deliveries.last
+
+   aggregate_failures do
+     expect(mail.to).to eq ["test@example.com"]
+     expect(mail.from).to eq ["noreply@example.com"]
+     expect(mail.subject).to eq "Account activation"
+   end
   end
 end

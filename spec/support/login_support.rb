@@ -1,4 +1,3 @@
-# 新しいモジュールを作成
 module LoginSupport
   def valid_login(user)
     visit root_path
@@ -9,7 +8,6 @@ module LoginSupport
   end
 end
 
-# LoginSupportモジュールをincludeする
 RSpec.configure do |config|
   config.include LoginSupport
 end
