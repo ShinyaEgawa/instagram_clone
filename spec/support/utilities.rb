@@ -1,4 +1,5 @@
 def full_title(page_title)
+  # バナータイトル
   base_title = "Ruby on Rails Tutorial Sample App"
   if page_title.empty?
     base_title
