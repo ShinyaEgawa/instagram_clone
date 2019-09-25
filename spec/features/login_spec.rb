@@ -13,8 +13,8 @@ RSpec.feature "Login", type: :feature do
   scenario "無効な情報ではログインに失敗すること" do
     visit root_path
     click_link "Log in"
-    fill_in "メールアドレス", with: ""
-    fill_in "パスワード", with: ""
+    fill_in "session[email]", with: ""
+    fill_in "session[password]", with: ""
     click_button "ログインする"
 
     expect(current_path).to eq login_path
