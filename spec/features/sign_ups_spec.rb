@@ -16,7 +16,7 @@ RSpec.feature "SignUps", type: :feature do
         click_button "Create my account"
       }.to change(User, :count).by(1)
 
-      expect(current_path).to eq "/users/1"
+      expect(current_path).to eq "/" #メールでの有効化がまだであるため,"/"へ移行
     end
 
 # 以下メール有効化のテスト

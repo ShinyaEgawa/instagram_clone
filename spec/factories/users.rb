@@ -4,13 +4,13 @@ FactoryBot.define do
     sequence(:email) { |n| "tester#{n}@example.com" }
     password "password"
     password_confirmation "password"
-    admin true
+    activated true
 
-    factory :other_user do
-      name "OtherUser"
-      sequence(:email) { |n| "othertester#{n}@example.com" }
-      password "password"
-      password_confirmation "password"
-    end
+    #factory :other_user do
+    #  name "OtherUser"
+    #  sequence(:email) { |n| "othertester#{n}@example.com" }
+    #  password "password"
+    #  password_confirmation "password"
+    #end
   end
 end
