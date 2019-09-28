@@ -132,7 +132,7 @@ RSpec.describe "User pages", type: :request do
       end
     end
 
-    it "is valid with valid signup information" do
+    it "ログイン方法の有効性" do
       perform_enqueued_jobs do
         expect {
           post users_path, params: { user: { name: "ExampleUser",

@@ -18,7 +18,7 @@ RSpec.describe "User pages", type: :request do
 end
 
 =begin
-本当はメールアドレスが有効の場合の下に、メールアドレスとトークンが有効・無効の場合の
+本当は「メールアドレスが有効の場合」の下に、「メールアドレスとトークンが有効・無効の場合」の
 rspecを実装予定だったのですが、
 実装することにより
  → bin/rspecでFailure(undefined local variable or method 'object')

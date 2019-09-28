@@ -53,7 +53,7 @@ RSpec.describe "UsersLoginApi", type: :request do
        delete logout_path
 
        #be_falsey → nilか空白であればfalseです
-       expect(response).to have_http_status(302)
+       expect(response).to have_http_status "302"
        expect(session[:user_id]).to be_falsey # => nil
      end
    end
@@ -61,18 +61,18 @@ RSpec.describe "UsersLoginApi", type: :request do
 
 #9
 describe "<sessions#destroy>" do
-    context "" do
+    context "2つのバグのテストその2" do
       before do
         @user = FactoryBot.build(:user)
       end
-      it "" do
+      it "2番目のウィンドウでログアウトする場合" do
         get login_path
         post login_path, params: { session: { email: @user.email, password: "password" } }
 
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status "200"
         redirect_to(@user)
         #expect(response).to redirect_to("users/show")
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status "200"
 
         delete logout_path
         expect(response).to redirect_to(root_path)
@@ -81,7 +81,7 @@ describe "<sessions#destroy>" do
         delete logout_path
         follow_redirect!
 
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status "200"
       end
     end
   end
