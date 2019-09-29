@@ -8,15 +8,20 @@
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
-      <section class="micropost_form">
-        <%= render 'shared/micropost_form' %>
-      </section>
+      <a href="#footer-post">
+        <h2 class="btn btn-primary">投稿する</h2>
+      </a>
     </aside>
     <div class="col-md-8">
       <h3>Micropost Feed</h3>
       <%= render 'shared/feed' %>
     </div>
   </div>
+  <footer>
+    <section id="footer-post" class="micropost_form">
+      <%= render 'shared/micropost_form' %>
+    </section>
+  </footer>
 <% else %>
   <% provide(:title, 'Toppage') %>
   <div id="topimg" class="center jumbotron">
