@@ -12,6 +12,8 @@ class User < ApplicationRecord
   before_save   :downcase_email
   before_create :create_activation_digest
   validates :name, presence: true, length: { maximum: 50 }
+  validates :user_name, presence: true, length: { maximum: 20 },
+                        uniqueness: { case_sensitive: true }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
@@ -88,7 +90,7 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search
-      where(['name LIKE ?', "%#{search}%"]) 
+      where(['name LIKE ?', "%#{search}%"])
     else
       all
     end
