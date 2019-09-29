@@ -1,6 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "static_pages";
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -288,3 +288,6 @@ span.picture {
     border: 0;
   }
 }
+
+/* これより下から追加機能 */
+/* Toppage */

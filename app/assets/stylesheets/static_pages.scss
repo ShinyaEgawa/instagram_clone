@@ -1,3 +1,15 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#topimg{
+  background-image: url("toppage.jpg");
+  background-color: rgba(0,0,0,0.7);
+  background-repeat: no-repeat;
+
+}
+
+.top-h2{
+  color: #333;
+}
+
+.about{
+  border: skyblue solid 3px;
+  padding: 10px;
+}
