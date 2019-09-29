@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "static_pages";
+@import "users.scss";
+@import "microposts.scss";
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -75,6 +77,18 @@ p {
     color: white;
     text-decoration: none;
   }
+}
+
+.header-form{
+  float: left;
+  width: 30%;
+  margin: 10px 0;
+}
+
+.header-submit{
+  float: left;
+  width: 30%;
+  margin: 10px 0;
 }
 
 /* footer */

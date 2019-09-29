@@ -6,6 +6,14 @@ class Micropost < ApplicationRecord
   validates :content, presence: true, length: { maximum: 140 }
   validate  :picture_size
 
+  def self.search(search)
+    if search
+      where(['content LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
   private
 
     def picture_size

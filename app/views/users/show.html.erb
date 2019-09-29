@@ -15,6 +15,13 @@
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <p>投稿検索</p>
+      <%= form_tag user_path, :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "検索する", :name => nil, class: "btn btn-primary" %>
+        </p>
+      <% end %>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
