@@ -1,7 +1,7 @@
 <% if logged_in? %>
   <% provide(:title, 'Home') %>
   <div class="row">
-    <aside class="col-md-4">
+    <aside class="col-md-3">
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
@@ -12,7 +12,7 @@
         <h2 class="btn btn-primary">投稿する</h2>
       </a>
     </aside>
-    <div class="col-md-8">
+    <div class="col-md-12">
       <h3>Micropost Feed</h3>
       <%= render 'shared/feed' %>
     </div>

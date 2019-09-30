@@ -262,8 +262,11 @@ input {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
+    padding: 10px 5px;
     border-top: 1px solid #e8e8e8;
+    display: inline-block;
+    width: 33%;
+    height: auto;
   }
   .user {
     margin-top: 5em;
@@ -305,3 +308,8 @@ span.picture {
 
 /* これより下から追加機能 */
 /* Toppage */
+.micropost-delete a{
+  color: red;
+  font-weight:bold;
+  text-decoration:none;
+}
