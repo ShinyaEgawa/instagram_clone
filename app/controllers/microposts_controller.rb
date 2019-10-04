@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:show, :create, :destroy]
   before_action :correct_user,   only: :destroy
 
   def create
@@ -13,10 +13,16 @@ class MicropostsController < ApplicationController
     end
   end
 
+  def show
+    @micropost = Micropost.find(params[:id])
+    @comment = Comment.new
+    @user = User.find_by(id: @micropost.user_id)
+  end
+
   def destroy
     @micropost.destroy
     flash[:success] = "マイクロポストを削除しました!"
-    redirect_to request.referrer || root_url
+    redirect_to root_url
   end
 
   private

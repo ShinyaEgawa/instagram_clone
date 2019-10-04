@@ -82,13 +82,18 @@ p {
 .header-form{
   float: left;
   width: 30%;
+  padding-top: 7px;
   margin: 10px 0;
 }
 
 .header-submit{
   float: left;
-  width: 30%;
+  width: 14%;
+  padding-top: 6px;
   margin: 10px 0;
+  &:hover{
+    color: red;
+  }
 }
 
 /* footer */
@@ -308,3 +313,35 @@ span.picture {
 
 /* これより下から追加機能 */
 /* Toppage */
+.envelope{
+  float: left;
+  color: white;
+  padding-top: 19px;
+  padding-right: 20px;
+}
+
+.notice{
+  float:left;
+  color: white;
+  padding-top: 19px ;
+}
+
+.user-detail{
+  float: left;
+  padding-top: 5px;
+  font-size: 22px;
+}
+
+.micropost-delete-detail{
+  float: left;
+  margin: 0 30px;
+  padding: 10px 20px;
+}
+
+.content-detail{
+  float:left;
+}
+
+li{
+  list-style: none;
+}
