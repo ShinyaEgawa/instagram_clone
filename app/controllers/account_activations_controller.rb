@@ -12,5 +12,4 @@ class AccountActivationsController < ApplicationController
       redirect_to root_url
     end
   end
-endclass AccountActivationsController < ApplicationController
 end
