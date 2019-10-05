@@ -6,6 +6,9 @@
 
 # Ignore bundler config.
 /.bundle
+/.env
+/public/
+/.DS_Store
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -21,3 +24,4 @@
 /yarn-error.log
 
 .byebug_history
+/public/uploads

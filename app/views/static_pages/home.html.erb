@@ -1,0 +1,40 @@
+<% if logged_in? %>
+  <% provide(:title, 'Home') %>
+  <div class="row">
+    <aside class="col-md-3">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+      <a href="#footer-post">
+        <h2 class="btn btn-primary">投稿する</h2>
+      </a>
+      <%= render 'shared/user_delete' %>
+    </aside>
+    <div class="col-md-12">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+  <footer>
+    <section id="footer-post" class="micropost_form">
+      <%= render 'shared/micropost_form' %>
+    </section>
+  </footer>
+<% else %>
+  <% provide(:title, 'Toppage') %>
+  <div id="topimg" class="center jumbotron">
+    <h1>Insta Clone へようこそ!</h1>
+
+    <h2 class="top-h2">
+      みんなの思い出を投稿してみませんか？<br />
+      メールアドレス: example@railstutorial.org<br />
+      パスワード: foobar
+    </h2>
+
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "Facebookでログイン", "#", class: "fa fa-facebook btn btn-lg btn-primary"  %>
+  </div>
+<% end %>

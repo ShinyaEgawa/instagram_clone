@@ -1,0 +1,12 @@
+<% provide(:title, 'All users') %>
+  <h1>All users</h1>
+    <%= will_paginate %>
+    <p>ユーザー検索</p>
+      <%= form_tag(users_path, :method => 'get' ) do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag '検索する', :name => nil, class: "btn btn-primary" %>
+      <% end %>
+      <ul class="users">
+        <%= render @users %>
+      </ul>
+    <%= will_paginate %>
