@@ -1,24 +1,35 @@
-# README
+# レポート
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 自分が苦労した点
 
-Things you may want to cover:
+・gitの操作やdbをrollbackするときにその解決法を探すのに時間がかかってしまった点
 
-* Ruby version
+・database作成時に必要なカラムや関連付けしたい項目を考える際、本当にそれが必要なカラムかどうかを見極めるのが苦労した点
 
-* System dependencies
+・ローカル変数でいいところでグローバル変数を使用してしまったり、その逆でグローバル変数を使用したいのにローカル変数を使用してしまったために、method errorを起こしてしまったりと、少し考えればどちらが必要かわかるところで多数のエラーを吐き出してしまった点
 
-* Configuration
+* 学んだ点
 
-* Database creation
+・最初の頃はエラーページの赤い画面を見ることが恐怖であったが、すぐにググって見たり、Slack内で検索したりしている内に、エラーを早く捌けるようになった点
 
-* Database initialization
+・MVCの関連がまだ完璧ではないがわかるようになった点
 
-* How to run the test suite
+* 自慢したい・相談したい点
 
-* Services (job queues, cache servers, search engines, etc.)
+・全てのテストコードを書くことはできなかったが、本課題で必要になってくるRSpecを導入し、テストを実行できた点
 
-* Deployment instructions
+・今回、1つの要素(like機能など)を追加する度にbranchを切ってはmergeするを繰り返していたのですが、branchを切る → mergeする という工程は多ければ多いほどいいのでしょうか？
+またそのタイミングは今回のような要素追加の時でいいのでしょうか？
 
-* ...
+・まだrailsという物に全く慣れていないと感じたため、再度rails tutorialを見直しています。
+ですが、このままの状況で本課題に入っても太刀打ちできるか心配なのですが、本課題に入る前に復習を行なった方が良い項目等ありましたら教えていただけると幸いです(今はUserの更新や削除を学び直しています)。
+
+* 未実装
+
+・Facebookでのログイン機能
+・通知機能
+・編集機能(一部)
+  ・ウェブサイト
+  ・自己紹介
+  ・電話番号
+  ・性別

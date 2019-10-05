@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :like do
-    user_id 1
-    micropost_id 1
+    association :micropost
+    user { micropost.user }
   end
 end

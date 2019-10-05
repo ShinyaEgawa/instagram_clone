@@ -1,3 +1,4 @@
+<%= provide(:title, 'detail') %>
 <li id="micropost-<%= @micropost.id %>" data-micropost-id="<%= @micropost.id %>">
   <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
   <span class="user-detail"><%= link_to @micropost.user.name, @micropost.user %></span>

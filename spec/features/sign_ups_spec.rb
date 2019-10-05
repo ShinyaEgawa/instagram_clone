@@ -9,9 +9,10 @@ RSpec.feature "SignUps", type: :feature do
 
     perform_enqueued_jobs do
       expect {
-        fill_in "user[name]",            with: "Example"
-        fill_in "user[email]",    with: "test@example.com"
-        fill_in "user[password]",       with: "test123"
+        fill_in "user[name]",                   with: "Example user"
+        fill_in "user[user_name]",              with: "Example"
+        fill_in "user[email]",                  with: "test@example.com"
+        fill_in "user[password]",               with: "test123"
         fill_in "user[password_confirmation]",  with: "test123"
         click_button "Create my account"
       }.to change(User, :count).by(1)

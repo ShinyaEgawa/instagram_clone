@@ -1,7 +1,13 @@
 FactoryBot.define do
   factory :comment do
-    user nil
-    micropost nil
-    body "MyText"
+    content "sample comment"
+    association :micropost
+    user { micropost.user }
+    trait :today do
+      created_at 1.hour.ago
+    end
+    trait :yesterday do
+      created_at 1.day.ago
+    end
   end
 end

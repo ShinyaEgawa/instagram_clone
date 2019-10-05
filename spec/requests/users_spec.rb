@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "User pages", type: :request do
   let(:user) { FactoryBot.create(:user) }
-  let(:other_user) { FactoryBot.create(:user) }
+  let(:other_user) { FactoryBot.create(:other_user) }
 
   describe "GET #new" do
     it "正常なレスポンスを返すこと" do
@@ -71,13 +71,6 @@ RSpec.describe "User pages", type: :request do
 
 
     context "アカウントが違うユーザーの場合" do
-      it "ユーザーを更新できないこと" do
-        user_params = FactoryBot.attributes_for(:user, name: "NewName")
-        sign_in_as other_user
-        patch user_path(user), params: { id: user.id, user: user_params }
-        expect(user.reload.name).to eq other_user.name
-      end
-
       it "ホーム画面にリダイレクトすること" do
         user_params = FactoryBot.attributes_for(:user, name: "NewName")
         sign_in_as other_user
@@ -93,17 +86,17 @@ RSpec.describe "User pages", type: :request do
         sign_in_as user
         expect{
           delete user_path(user), params: { id: user.id }
-        }.to change(User, :count).by(0) #FactoryBotで生成したuserにadmin権限が付いていないため、count変更はなし
+        }.to change(User, :count).by(-1)
       end
     end
 
-    #context "アカウントの違うユーザの場合" do
-    #  it "ホーム画面にリダイレクトすること" do
-    #    sign_in_as other_user
-    #    delete user_path(user), params: { id: user.id }
-    #    expect(response).to redirect_to users_path
-    #  end
-    #end
+    context "アカウントの違うユーザの場合" do
+      it "ホーム画面にリダイレクトすること" do
+        sign_in_as other_user
+        delete user_path(user), params: { id: user.id }
+        expect(response).to redirect_to users_path
+      end
+    end
 
     context "ゲストとして" do
       it "302レスポンスを返すこと" do
@@ -136,9 +129,10 @@ RSpec.describe "User pages", type: :request do
       perform_enqueued_jobs do
         expect {
           post users_path, params: { user: { name: "ExampleUser",
-                                            email: "user@example.com",
-                                            password: "password",
-                                            password_confirmation: "password" } }
+                                             user_name: "Example",
+                                             email: "user@example.com",
+                                             password: "password",
+                                             password_confirmation: "password" } }
         }.to change(User, :count).by(1)
 
         expect(response).to redirect_to root_path
