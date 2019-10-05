@@ -1,5 +1,5 @@
 <% if !current_user?(micropost.user) %>
-    <span class="like">
+  <span class="like">
     <% if micropost.iine?(current_user) %>
       <%= form_for(micropost.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
         <%= button_tag(class: "btn btn-default btn-xs") do %>

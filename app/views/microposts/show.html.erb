@@ -6,14 +6,14 @@
     <%= link_to "削除", @micropost, class: "micropost-delete-detail btn btn-sm btn-primary", method: :delete,
                                      data: { confirm: "削除してもよろしいですか？" } %>
   <% end %>
-  </li>
+</li>
   <span class="content-detail">
     <%= @micropost.content %>
   </span>
   <span class="picture-detail">
     <%= image_tag @micropost.picture.url if @micropost.picture? %>
   </span>
-  <li id="micropost">
+<li id="micropost">
   <span class="timestamp">
     Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
   </span>
@@ -22,15 +22,16 @@
 <div class="comment_index">
   <h3>Comments</h3>
   <% @micropost.comments.each do |comment| %>
-         <%= link_to gravatar_for(comment.user, size: 50), comment.user %>
-         <p><%= link_to "#{comment.user.name}" , @user %>: <%= comment.body %>
+    <%= link_to gravatar_for(comment.user, size: 50), comment.user %>
+      <p><%= link_to "#{comment.user.name}" , @user %>: <%= comment.body %>
         <!--<%#<span> <%= image_tag comment.picture.url if comment.picture?%></span> %>-->
-    <span class= "batu"><%= link_to "このコメントを削除する" , [@micropost,comment] , method: :delete if current_user?(comment.user) %></span></p>
+        <span class= "batu"><%= link_to "このコメントを削除する" , [@micropost,comment] , method: :delete if current_user?(comment.user) %></span>
+      </p>
     <hr/>
   <% end %>
-  </div>
+</div>
 <div class="comment-form">
-      <%= form_for([@micropost , @comment]) do |f| %>
+  <%= form_for([@micropost , @comment]) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="field">
       <%= f.text_area :body, placeholder: "Send comment..." %>
@@ -41,7 +42,7 @@
       <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
     </span>
     %>-->
-    <% end %>
+  <% end %>
 
   <script type="text/javascript">
     $('#micropost_picture').bind('change', function() {
@@ -51,4 +52,4 @@
       }
     });
   </script>
-  </div>
+</div>

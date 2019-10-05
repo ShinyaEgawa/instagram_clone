@@ -4,22 +4,17 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(:session, url: login_path) do |f| %>
-
       <%= f.label :"メールアドレス" %>
       <%= f.email_field :email, class: 'form-control' %>
-
       <%= f.label :"パスワード" %>
       <%= link_to "(パスワードを思い出せませんか？)", new_password_reset_path %>
       <%= f.password_field :password, class: 'form-control' %>
-
       <%= f.label :remember_me, class: "checkbox inline" do %>
         <%= f.check_box :remember_me %>
         <span>PCに記憶させる</span>
       <% end %>
-
       <%= f.submit "ログインする", class: "btn btn-primary" %>
     <% end %>
-
     <p>新規登録はお済みですか？ <%= link_to "新しく登録しよう！", signup_path %></p>
   </div>
 </div>
